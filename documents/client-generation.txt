@@ -1,0 +1,30 @@
+
+JUST AMP
+
+NEEDED 5.0.0.9 Firmware: Fixes amp WSDL files!!!
+
+export WSDLDIR=/Users/steve/Applications/eclipse/workspace/JAX-WS-JAXB-DP-XMI-Client/wsdl-xsd-xmi
+
+cd /Users/steve/Applications/eclipse/workspace/JAX-WS-JAXB-DP-XMI-Client/src
+
+wsimport -d . -p client.amp.generated $WSDLDIR/app-mgmt-protocol-v2.wsdl -keep -Xnocompile
+
+
+--------------------------------------------------------------------------------------------------------------------------------
+OLD JUST SOMA
+d:
+
+set WSDLDIR=D:\Software\eclipse-helios-jee\eclipse\workspace\JAX-WS-JAXB-DP-XMI-Client\wsdl-xsd-xmi
+
+cd D:\Software\eclipse-helios-jee\eclipse\workspace\JAX-WS-JAXB-DP-XMI-Client\src
+
+wsimport -d . -p client.xmi.generated %WSDLDIR%\xml-mgmt.wsdl -keep -Xnocompile -b %WSDLDIR%\rename-deployment-policy-attribute.xjb
+
+(need to refresh workspace after this)
+- generates *Service class, which includes a #get*Port method, the methods of the Web Service
+may be called against this
+
+
+--------------------------------------------------------------------------------------------------------------------------------
+OLDER
+> wsimport -d . -p client.xmi.generated C:\Software\eclipse\workspace\XMI-Java-Client\wsdl-files\xml-mgmt.wsdl -keep -Xnocompile

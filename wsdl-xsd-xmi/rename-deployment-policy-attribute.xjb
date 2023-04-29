@@ -1,0 +1,59 @@
+<!--
+	wsimport can generate Java classes providing access to the
+	XMI (XML Management Interface) supported by DataPower.
+	A minor problem exists when using the default setting of wsimport
+	in that some components of xml-mgmnt-ops.xsd have conflicting
+	property names. Details may be seen at the bottom of this file.
+	- Steve Edwards (2011-10-24)
+	(The names of the artifacts are not important, the settings below
+	are simply intended to avoid failure of the generation.)
+-->
+
+<!-- http://jaxb.java.net/tutorial/section_5_3-Overriding-Names.html -->
+
+
+<jxb:bindings xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+               xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+               jxb:version="2.0">
+  <jxb:bindings schemaLocation="xml-mgmt-ops.xsd" node="/xsd:schema">
+  
+  <!-- do-export -->
+    <jxb:bindings node="//xsd:element[@name='do-export']//xsd:attribute[@name='deployment-policy']">
+      <jxb:property name="deployment-policy-attr-do-export"/>
+    </jxb:bindings>
+    
+  <!-- do-import -->
+    <jxb:bindings node="//xsd:element[@name='do-import']//xsd:attribute[@name='deployment-policy']">
+      <jxb:property name="deployment-policy-attr-do-import"/>
+    </jxb:bindings>
+    
+  <!-- do-backup -->
+    <jxb:bindings node="//xsd:element[@name='do-backup']//xsd:attribute[@name='deployment-policy']">
+      <jxb:property name="deployment-policy-attr-do-backup"/>
+    </jxb:bindings>
+    
+  <!-- do-restore -->
+    <jxb:bindings node="//xsd:element[@name='do-restore']//xsd:attribute[@name='deployment-policy']">
+      <jxb:property name="deployment-policy-attr-do-restore"/>
+    </jxb:bindings>
+    
+  </jxb:bindings>
+</jxb:bindings>
+
+<!--
+	Issue with wsimport of JDK6 (Steve Edwards, 2011-10-21)
+
+	wsimport with original xml-mgmt-ops.xsd had problems with
+	element and attribute of the same name: "deployment-policy".
+
+	[ERROR] Property "DeploymentPolicy" is already defined. Use &lt;jaxb:property> to resolve this conflict.
+
+	These existed in the following:
+		<xsd:element name="do-export">
+		<xsd:element name="do-import">
+		<xsd:element name="do-backup">
+		<xsd:element name="do-restore">
+	Each has two components:
+		<xsd:element name="deployment-policy" type="tns:ConfigConfigDeploymentPolicy" minOccurs="0" maxOccurs="1"/>
+		<xsd:attribute name="deployment-policy" type="xsd:string"/>
+-->

@@ -1,0 +1,30 @@
+Use VM Argument:
+
+-Dcom.sun.xml.internal.ws.transport.http.client.HttpTransportPipe.dump=true
+
+to get this output:
+
+---[HTTP response - https://192.168.1.33:5550 - 200]---
+Transfer-encoding: chunked
+null: HTTP/1.1 200 Good
+Host: 192.168.1.33:5550
+Content-type: text/xml
+X-client-ip: 192.168.1.100
+Authorization: Basic YWRtaW46d2ViMXNwaGVyZQ==
+Via: 1.1 xml-mgmt
+User-agent: JAX-WS RI 2.1.6 in JDK 6
+Soapaction: ""
+<?xml version="1.0" encoding="UTF-8"?>
+<env:Envelope xmlns:env="http://schemas.xmlsoap.org/soap/envelope/"><env:Body><dp:response xmlns:dp="http://www.datapower.com/schemas/management"><dp:timestamp>2013-09-24T12:46:33-04:00</dp:timestamp><dp:status><ActiveUsers xmlns:env="http://www.w3.org/2003/05/soap-envelope">
+<session>4</session>
+<name>admin</name>
+<connection>web-gui</connection>
+<address>192.168.1.100</address>
+<login>Tue Sep 24 12:17:39 2013</login>
+<domain>SE_EXPLORE</domain></ActiveUsers><ActiveUsers xmlns:env="http://www.w3.org/2003/05/soap-envelope">
+<session>10</session>
+<name>admin</name>
+<connection>saml-artifact</connection>
+<address>192.168.1.100</address>
+<login>Tue Sep 24 12:46:33 2013</login>
+<domain>default</domain></ActiveUsers></dp:status></dp:response></env:Body></env:Envelope>--------------------
